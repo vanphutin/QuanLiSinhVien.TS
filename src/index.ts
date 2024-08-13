@@ -1,11 +1,30 @@
-/**
- * This file is just a silly example to show everything working in the browser.
- * When you're ready to start on your site, clear the file. Happy hacking!
- **/
+import { v4 as uuidV4 } from "uuid";
+import { SinhVien } from "./class/SinhVien";
+import { SinhVienKinhTe } from "./class/SinhVienKinhTe";
+import { CongNgheThongTin } from "./class/CongNgheThongTin";
 
-import confetti from 'canvas-confetti';
+// Khởi tạo đối tượng
+let SinhVienCNT = new CongNgheThongTin(
+  uuidV4(),
+  "Van Phu Tin",
+  true,
+  10,
+  10,
+  10
+);
+let SinhVienKt = new SinhVienKinhTe(uuidV4(), "Van Phu Tin", true, 4, 5);
 
-confetti.create(document.getElementById('canvas') as HTMLCanvasElement, {
-  resize: true,
-  useWorker: true,
-})({ particleCount: 200, spread: 200 });
+// In thông tin ra console
+console.log(SinhVienCNT.toString());
+console.log(SinhVienKt.toString());
+
+// Cập nhật nội dung của phần tử ul
+const ulDiv = document.querySelector("ul");
+
+if (ulDiv) {
+  // Kiểm tra và sửa cú pháp trong innerHTML
+  ulDiv.innerHTML = `
+    <li class="student-info">${SinhVienCNT.toString()}</li>
+    <li class="student-info">${SinhVienKt.toString()}</li>
+  `;
+}
